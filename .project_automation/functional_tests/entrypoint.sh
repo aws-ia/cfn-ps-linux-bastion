@@ -17,10 +17,14 @@ PROJECT_TYPE_PATH=${BASE_PATH}/projecttype
 secret_name=$(cat .taskcat.yml | yq -r '.project|.name')
 secret_name=${secret_name}-override
 secret_region="us-east-1"
-# retrieve the secret value as a JSON string
+# If overrides secret exists, retrieve the secret value as a JSON string
+set +e
 overrides=$(aws secretsmanager get-secret-value --secret-id $secret_name --query SecretString --output text --region $secret_region)
 # convert the JSON string to YAML and save it to a file
-echo "$overrides" > .taskcat_overrides.yml
+if [ "#?" -eq 0 ]; then
+  echo "$overrides" > .taskcat_overrides.yml
+fi
+set -e
 ##----------------------------------------------------
 
 # set taskcat general config
