@@ -34,4 +34,6 @@ general:
 EOF
 
 # Run taskcat tests
-taskcat test run
+REGIONS=$(aws ec2 describe-regions | yq -r '.Regions|.[]|.RegionName')
+CSV_REGIONS=$(echo $REGIONS | tr ' ' ',')
+taskcat test run  -r $CSV_REGIONS
