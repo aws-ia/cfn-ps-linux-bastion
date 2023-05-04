@@ -1,0 +1,14 @@
+general:
+  auth:
+    default: default-profile
+    us-east-2: us-east-2-profile
+project:
+  s3_regional_buckets: true
+  s3_bucket: aws-ia
+  regions:
+    - us-east-1
+    - us-east-2
+tests:
+  test1:
+    parameters:
+      paramkey: paramvalue
