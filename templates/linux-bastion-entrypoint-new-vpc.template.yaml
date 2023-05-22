@@ -1,7 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
-  AWS CloudFormation template for deploying Linux bastion hosts in an
-  auto-scaling group in a new VPC. (qs-1qup6ra9p)
+  AWS CloudFormation template for deploying Linux bastion hosts in an auto-scaling group in a new VPC. (qs-1qup6ra9p)
 Metadata:
   QuickStartDocumentation:
     EntrypointName: Launch into a new VPC
