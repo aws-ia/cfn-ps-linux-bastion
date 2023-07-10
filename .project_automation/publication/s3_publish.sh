@@ -36,7 +36,7 @@ prepare_aws_config(){
 
     # create default profile and redirect output to a file
     echo -e "[profile default]\ncredential_process = cat \"${BASE_PATH}/.aws/temp-creds-default.json\"" > "${automation_scripts_path}aws_config.override"
-    
+
     for profile in ${profiles}
     do
         # get values of each profile
@@ -64,3 +64,22 @@ aws sts get-caller-identity --debug
 
 # push to regional S3 buckets
 export TASKCAT_PROJECT_S3_REGIONAL_BUCKETS=true; taskcat -d upload -p ${project_root} -c "${automation_scripts_path}tmp.yml"
+
+PUBLICATIONS_ASSETS_BUCKET=$(aws ssm get-parameter --region us-east-1 --name PUBLICATIONS_ASSETS_BUCKET --with-decryption | jq -r '.Parameter|.Value')
+
+upload_assets_to_ssm(){
+    cd ${project_root}
+    APP_MGR_MANIFEST=${project_root}/manifests/app-manager/app-manager-manifest.yaml
+    if [[ -f "$APP_MGR_MANIFEST" ]]; then
+        aws s3 cp --region us-east-1 s3://${PUBLICATIONS_ASSETS_BUCKET}/template_to_ssm_doc_pusher.py ${project_root}/.project_automation/publication/assets/
+        PUBLISH_SSM_DOC_ACCOUNT_ID=$(aws ssm get-parameter --region us-east-1 --name PUBLISH_SSM_DOC_ACCOUNT_ID --with-decryption | jq -r '.Parameter|.Value')
+        version_suffix=$(date "+%Y-%m-%d-%H-%M-%S")
+        regions=$(aws ec2 describe-regions --region us-east-1 --output text | cut -f4)
+        aws sts get-caller-identity
+        for region in ${regions}; do
+            python ${project_root}/.project_automation/publication/assets/template_to_ssm_doc_pusher.py -a ${PUBLISH_SSM_DOC_ACCOUNT_ID} -f ${project_root}/manifests/app-manager/app-manager-manifest.yaml -r ${region} -v ${version_suffix} -d true
+        done
+    fi
+}
+
+upload_assets_to_ssm
