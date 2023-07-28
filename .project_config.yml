@@ -11,9 +11,14 @@ functional_tests:
   enable_docker: true
   dockerfile: .project_automation/functional_tests/Dockerfile
   entrypoint: .project_automation/functional_tests/entrypoint.sh
+  github_permissions:
+    contents: write
+    pull_requests: write
 publication:
   enable_docker: true
   dockerfile: .project_automation/publication/Dockerfile
   entrypoint: .project_automation/publication/entrypoint.sh
+  github_permissions:
+    contents: write
 deprecation:
   entrypoint: .project_automation/deprecation/entrypoint.sh
