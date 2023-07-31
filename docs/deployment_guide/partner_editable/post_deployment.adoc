@@ -1,0 +1,60 @@
+:xrefstyle: short
+
+== Postdeployment steps
+
+=== Confirm that you can log in to the bastion host
+
+Log in to the bastion host.
+Use one of the following user names, depending on your choice of Linux distribution:
+
+* Amazon Linux / SUSE Linux Enterprise Server (SLES): *ec2-user*
+* CentOS: *centos*
+* Ubuntu: *ubuntu*
+
+The Linux distribution is specified in the *Bastion AMI operating system* parameter when you deploy the templates.
+
+== Additional information
+
+=== Bastion logging
+
+The bastion hosts deployed by this Partner Solution provide a command logger in the
+`/var/log/audit/audit.log` file.
+This log file contains the date, SSH client connection IP address, user name, working directory, and the commands issued.
+
+For added security, the contents of the `/var/log/audit/audit.log` file is also stored in a CloudWatch Logs log group in the AWS Cloud and remains available in case the bastion hosts fail.
+
+The log includes a history of the commands that are run when you log in. <<logging>> shows an example.
+
+[#logging]
+.Bastion logging
+image::../docs/deployment_guide/images/logging.png[Logging]
+
+The `bastion.log` file is an immutable file that cannot be easily deleted or tampered with.
+However, in case this happens, there is a shadow file with a copy of `bastion.log` located in `/var/log/audit/audit.log`.
+The Partner Solution also stores the contents of `bastion.log` remotely using the CloudWatch Logs service.
+Log files can be found under CloudWatch Logs using the instance ID as the log stream name.
+
+=== Remote access
+
+This Partner Solution provisions one Linux bastion host in each Availability Zone with a single security group as a virtual firewall.
+This security group is required for remote access from the Internet if a remote access CIDR block was configured for the deployment.
+The security group is configured as follows:
+
+==== Inbound
+
+|===
+|Source|Protocol|Ports
+
+|Remote access CIDR|TCP|22
+|Remote access CIDR|ICMP|N/A
+|===
+
+==== Outbound
+
+|===
+|Destination|Protocol|Ports
+
+|0.0.0.0/0 |All|All
+|===
+
+For more information, refer to https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Security.html[Internetwork traffic privacy in Amazon VPC^].
