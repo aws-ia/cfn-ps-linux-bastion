@@ -53,7 +53,7 @@ tests:
       - cn-north-1
   amznlinux2022:
     parameters:
-      BastionAMIOS: Amazon-Linux2022
+      BastionAMIOS: Amazon-Linux2023
       RemoteAccessCIDR: 10.0.0.0/16
     regions:
       - eu-west-2
@@ -99,7 +99,7 @@ tests:
       - us-gov-west-1
   amznlinux2022arm:
     parameters:
-      BastionAMIOS: Amazon-Linux2022-ARM
+      BastionAMIOS: Amazon-Linux2023-ARM
       BastionInstanceType: t4g.nano
       RemoteAccessCIDR: 10.0.0.0/16
     regions:

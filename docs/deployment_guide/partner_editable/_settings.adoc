@@ -1,0 +1,14 @@
+:partner-solution-project-name: cfn-ps-linux-bastion
+:partner-solution-github-org: aws-ia
+:partner-product-name: Linux Bastion Hosts
+:partner-product-short-name: Linux Bastion Hosts
+// :partner-company-name: Example Company Name, Ltd.
+:doc-month: December
+:doc-year: 2022
+// :partner-contributors: John Smith, {partner-company-name}
+// :other-contributors: Akua Mansa, Trek10
+:aws-contributors: Santiago Cardenas, AWS Serverless Partners
+:aws-ia-contributors: Tony Vattathil, Ian Hill, and Troy Lindsay, AWS Integration & Automation team
+:deployment_time: 5 minutes
+:default_deployment_region: us-west-2
+// :private_repo:
