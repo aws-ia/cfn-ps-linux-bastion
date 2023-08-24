@@ -62,6 +62,7 @@ cat "${automation_scripts_path}tmp.yml"
 
 aws sts get-caller-identity --debug
 
+chmod 755 ${project_root}/.project_automation/publication/assets/cred_helper.py
 # push to regional S3 buckets
 export TASKCAT_PROJECT_S3_REGIONAL_BUCKETS=true; taskcat -d upload -p ${project_root} -c "${automation_scripts_path}tmp.yml"
 

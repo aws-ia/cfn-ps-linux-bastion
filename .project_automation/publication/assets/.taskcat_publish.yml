@@ -6,6 +6,10 @@ general:
     ap-southeast-3: ap-southeast-3-profile
     eu-south-1: eu-south-1-profile
     me-south-1: me-south-1-profile
+    cn-north-1: china-profile
+    cn-northwest-1: china-profile
+    us-gov-east-1: us-govcloud-profile
+    us-gov-west-1: us-govcloud-profile
 project:
   s3_regional_buckets: true
   s3_bucket: aws-ia
@@ -32,5 +36,9 @@ project:
     - ca-central-1
     - eu-central-1
     - eu-north-1
+    - cn-north-1
+    - cn-northwest-1
+    - us-gov-east-1
+    - us-gov-west-1
 tests:
   test1: {}
