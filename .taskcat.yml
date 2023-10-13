@@ -1,5 +1,5 @@
 project:
-  name: cfn-ps-aws-linux-bastion
+  name: cfn-ps-linux-bastion
   owner: quickstart-eng@amazon.com
   shorten_stack_name: true
   s3_regional_buckets: true

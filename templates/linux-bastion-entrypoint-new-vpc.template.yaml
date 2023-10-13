@@ -261,7 +261,7 @@ Parameters:
     ConstraintDescription:
       The Quick Start S3 key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slashes (/).
-    Default: cfn-ps-aws-linux-bastion/
+    Default: cfn-ps-linux-bastion/
   QSS3BucketRegion:
     Type: String
     Description: >-
