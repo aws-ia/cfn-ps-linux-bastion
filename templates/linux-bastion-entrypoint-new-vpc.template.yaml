@@ -324,7 +324,7 @@ Parameters:
     Default: ''
 Conditions:
   HasRemoteCIDR: !Not [!Equals [!Ref RemoteAccessCIDR, disabled-onlyssmaccess]]
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-quickstart]
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-ia-us-east-1]
 Resources:
   VPCStack:
     Type: AWS::CloudFormation::Stack

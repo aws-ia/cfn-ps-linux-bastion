@@ -694,7 +694,7 @@ Conditions:
   UseAlternativeInitialization: !Not [!Equals [!Ref AlternativeInitializationScript, '']]
   CreateIAMRole: !Equals [!Ref AlternativeIAMRole, '']
   UseOSImageOverride: !Not [!Equals [!Ref OSImageOverride, '']]
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-quickstart]
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-ia-us-east-1]
   DefaultBanner: !Equals [!Ref BastionBanner, '']
   UseKeyPair: !Not [!Equals [!Ref KeyPairName, '']]
 Resources:
