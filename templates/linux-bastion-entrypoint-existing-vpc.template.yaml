@@ -214,7 +214,7 @@ Parameters:
       The Quick Start bucket name can include numbers, lowercase
       letters, uppercase letters, and hyphens (-). It cannot start or end with a
       hyphen (-).
-    Default: aws-quickstart
+    Default: aws-ia
   QSS3BucketRegion:
     Type: String
     Description: The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.
@@ -234,7 +234,7 @@ Parameters:
     ConstraintDescription:
       The Quick Start S3 key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slashes (/).
-    Default: quickstart-linux-bastion/
+    Default: cfn-ps-linux-bastion/
   RemoteAccessCIDR:
     Type: String
     Description: Allowed CIDR block for external SSH access to the bastions.
@@ -694,7 +694,7 @@ Conditions:
   UseAlternativeInitialization: !Not [!Equals [!Ref AlternativeInitializationScript, '']]
   CreateIAMRole: !Equals [!Ref AlternativeIAMRole, '']
   UseOSImageOverride: !Not [!Equals [!Ref OSImageOverride, '']]
-  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-ia-us-east-1]
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, aws-ia]
   DefaultBanner: !Equals [!Ref BastionBanner, '']
   UseKeyPair: !Not [!Equals [!Ref KeyPairName, '']]
 Resources:
