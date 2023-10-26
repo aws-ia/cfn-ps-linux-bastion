@@ -331,7 +331,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}submodules/cfn-ps-aws-vpc/templates/aws-vpc.template.yaml
-        - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
           S3Region: !If [UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion]
       Parameters:
         AvailabilityZones: !Join [',', !Ref AvailabilityZones]
@@ -347,7 +347,7 @@ Resources:
     Properties:
       TemplateURL: !Sub
         - https://${S3Bucket}.s3.${S3Region}.${AWS::URLSuffix}/${QSS3KeyPrefix}templates/linux-bastion-entrypoint-existing-vpc.template.yaml
-        - S3Bucket: !If [UsingDefaultBucket, !Sub 'aws-quickstart-${AWS::Region}', !Ref QSS3BucketName]
+        - S3Bucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
           S3Region: !If [UsingDefaultBucket, !Ref AWS::Region, !Ref QSS3BucketRegion]
       Parameters:
         BastionAMIOS: !Ref BastionAMIOS
