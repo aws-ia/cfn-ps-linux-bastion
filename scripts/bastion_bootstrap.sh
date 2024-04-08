@@ -184,7 +184,7 @@ setup_os() {
   elif [[ "${release}" == "Ubuntu" ]]; then
     apt-get install -y unattended-upgrades
     echo "0 0 * * * unattended-upgrades -d" > /etc/cron.d/yum-security-updates
-  elif [[ "$INSTANCE_OSTYPE" == "amzn" && "$INSTANCE_OSVERSION" == "2023" ]]; then
+  elif [[ "$INSTANCE_OSTYPE" == "AMZN" && "$INSTANCE_OSVERSION" == "2023" ]]; then
     yum install -y cronie
     echo "0 0 * * * yum -y update --security" > /etc/cron.d/yum-security-updates
   else
