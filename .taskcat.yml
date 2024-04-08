@@ -51,6 +51,13 @@ tests:
       - us-west-2
       - us-gov-east-1
       - cn-north-1
+  amznlinux2023hvm:
+    parameters:
+      BastionAMIOS: Amazon-Linux2023
+      RemoteAccessCIDR: 10.0.0.0/16
+    regions:
+      - us-east-1
+      - us-west-2
   centos7hvm:
     parameters:
       BastionAMIOS: CentOS-7-HVM

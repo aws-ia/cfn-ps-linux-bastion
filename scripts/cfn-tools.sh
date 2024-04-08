@@ -236,7 +236,7 @@ qs_aws-cfn-bootstrap() {
   qs_get-osversion INSTANCE_OSVERSION
 
   echo "[INSTALL aws-cfn-bootstrap tools]"
-  if [[ "$INSTANCE_OSTYPE" == "amzn" && ( "$INSTANCE_OSVERSION" == "2" || "$INSTANCE_OSVERSION" == "2022" ) ]]; then
+  if [[ "$INSTANCE_OSTYPE" == "amzn" && ( "$INSTANCE_OSVERSION" == "2" || "$INSTANCE_OSVERSION" == "2023" ) ]]; then
     cp scripts/opt-aws.sh /etc/profile.d/
     ln -s /opt/aws/bin/cfn-* /usr/bin/
     export PATH=$PATH:/opt/aws/bin
