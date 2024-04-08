@@ -173,7 +173,7 @@ setup_os() {
     user_group="ec2-user"
   fi
 
-  if [[ "${release}" == "AMZN"]]; then
+  if [[ "${release}" == "AMZN" ]]; then
     version=`cat /etc/os-release | grep '^VERSION=' | tr -d '"' | sed 's/\n//g'| sed 's/VERSION=//g'`
   fi
 
