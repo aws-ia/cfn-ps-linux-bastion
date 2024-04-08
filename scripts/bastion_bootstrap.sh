@@ -86,7 +86,7 @@ chkstatus() {
 }
 
 osrelease() {
-  OS=`cat /etc/os-release | grep '^NAME=' |  tr -d \" | sed 's/\n//g' | sed 's/NAME=//g'`
+  OS=`cat /etc/os-release | grep '^NAME=' |  tr -d '"' | sed 's/\n//g' | sed 's/NAME=//g'`
   if [[ "${OS}" == "Ubuntu" ]]; then
     echo "Ubuntu"
   elif [[ "${OS}" == "Amazon Linux AMI" ]] || [[ "${OS}" == "Amazon Linux" ]]; then
@@ -173,6 +173,10 @@ setup_os() {
     user_group="ec2-user"
   fi
 
+  if [[ "${release}" == "AMZN" ]]; then
+    version=`cat /etc/os-release | grep '^VERSION=' | tr -d '"' | sed 's/\n//g'| sed 's/VERSION=//g'`
+  fi
+
   if [[ "${release}" == "CentOS" ]]; then
     /sbin/restorecon -v /etc/ssh/sshd_config
   fi
@@ -184,12 +188,16 @@ setup_os() {
   elif [[ "${release}" == "Ubuntu" ]]; then
     apt-get install -y unattended-upgrades
     echo "0 0 * * * unattended-upgrades -d" > /etc/cron.d/yum-security-updates
+  elif [[ "${release}" == "AMZN" && "${version}" == "2023" ]]; then
+    yum install -y cronie
+    echo "0 0 * * * yum -y update --security" > /etc/cron.d/yum-security-updates
   else
     echo "0 0 * * * yum -y update --security" > /etc/cron.d/yum-security-updates
   fi
 
   systemctl restart sshd
   echo "${FUNCNAME[0]} ended"
+
 }
 
 # Setup AWS Systems Manager (SSM) agent
