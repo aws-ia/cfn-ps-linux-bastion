@@ -173,6 +173,10 @@ setup_os() {
     user_group="ec2-user"
   fi
 
+  if [[ "${release}" == "AMZN"]]; then
+    version=`cat /etc/os-release | grep '^VERSION=' | tr -d '"' | sed 's/\n//g'| sed 's/VERSION=//g'`
+  fi
+
   if [[ "${release}" == "CentOS" ]]; then
     /sbin/restorecon -v /etc/ssh/sshd_config
   fi
@@ -184,7 +188,7 @@ setup_os() {
   elif [[ "${release}" == "Ubuntu" ]]; then
     apt-get install -y unattended-upgrades
     echo "0 0 * * * unattended-upgrades -d" > /etc/cron.d/yum-security-updates
-  elif [[ "$INSTANCE_OSTYPE" == "AMZN" && "$INSTANCE_OSVERSION" == "2023" ]]; then
+  elif [[ "${release}" == "AMZN" && "${version}" == "2023" ]]; then
     yum install -y cronie
     echo "0 0 * * * yum -y update --security" > /etc/cron.d/yum-security-updates
   else
