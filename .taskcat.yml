@@ -95,6 +95,14 @@ tests:
       - ap-south-1
       - us-west-1
       - us-gov-west-1
+  amznlinux2023hvmarm:
+    parameters:
+      BastionAMIOS: Amazon-Linux2023-ARM
+      BastionInstanceType: t4g.nano
+      RemoteAccessCIDR: 10.0.0.0/16
+    regions:
+      - us-east-2
+      - us-west-1
   us2204hvmarm:
     parameters:
       BastionAMIOS: Ubuntu-Server-22.04-LTS-HVM-ARM
