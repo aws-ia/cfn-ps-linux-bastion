@@ -98,6 +98,7 @@ tests:
   amznlinux2023hvmarm:
     parameters:
       BastionAMIOS: Amazon-Linux2023-ARM
+      BastionInstanceType: t4g.nano
       RemoteAccessCIDR: 10.0.0.0/16
     regions:
       - us-east-2
