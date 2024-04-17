@@ -31,5 +31,12 @@ case "${BASTION_OS}" in
       ;;
 esac
 
-add_the_rules
-restart_services
+service_name="chronicled"
+
+if systemctl is-active --quiet "$service_name.service" ; then
+  echo "$service_name running"
+else
+  add_the_rules
+  restart_services
+fi
+
